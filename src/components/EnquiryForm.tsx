@@ -49,7 +49,7 @@ async function submitEnquiry(v: Values): Promise<boolean> {
   }
 }
 
-const input = 'mt-2 w-full rounded-xl border border-ink-600 bg-ink px-4 py-3 text-base text-white placeholder:text-steel-dim transition-colors focus:border-ice focus:outline-none focus:ring-2 focus:ring-ice/30 aria-[invalid=true]:border-flame'
+const input = 'mt-2 w-full rounded-xl border border-ink-600 bg-ink px-4 py-3 text-base text-fg placeholder:text-steel-dim transition-colors focus:border-ice focus:outline-none focus:ring-2 focus:ring-ice/30 aria-[invalid=true]:border-flame'
 
 export function EnquiryForm() {
   const [values, setValues] = useState<Values>(empty)
@@ -83,7 +83,7 @@ export function EnquiryForm() {
       <div className="card p-8 text-center" role="status">
         <CheckCircle2 className="mx-auto h-12 w-12 text-ice" />
         <h3 className="mt-4 text-2xl font-semibold">Thanks – we have your enquiry</h3>
-        <p className="mt-3 text-sm leading-relaxed">We will get back to you as soon as we can. For a breakdown, calling is quicker: <a className="font-semibold text-white underline" href={site.phoneHref}>{site.phoneDisplay}</a> or <a className="font-semibold text-white underline" href={site.mobileHref}>{site.mobileDisplay}</a>.</p>
+        <p className="mt-3 text-sm leading-relaxed">We will get back to you as soon as we can. For a breakdown, calling is quicker: <a className="font-semibold text-fg underline" href={site.phoneHref}>{site.phoneDisplay}</a> or <a className="font-semibold text-fg underline" href={site.mobileHref}>{site.mobileDisplay}</a>.</p>
         <div className="mt-6"><Button variant="ghost" onClick={() => setStatus('idle')}>Send another enquiry</Button></div>
       </div>
     )
@@ -108,16 +108,16 @@ export function EnquiryForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="card relative space-y-5 overflow-hidden p-6 sm:p-8" aria-label="Enquiry form">
-      <p className="text-sm">Breakdown? Calling is fastest: <a className="font-semibold text-white underline" href={site.phoneHref}>{site.phoneDisplay}</a></p>
+      <p className="text-sm">Breakdown? Calling is fastest: <a className="font-semibold text-fg underline" href={site.phoneHref}>{site.phoneDisplay}</a></p>
       <div className="grid gap-5 sm:grid-cols-2">
-        <div><label htmlFor="f-name" className="text-sm font-medium text-white">Name</label><input {...a11y('name')} autoComplete="name" className={input} value={values.name} onChange={set('name')} />{err('name')}</div>
-        <div><label htmlFor="f-phone" className="text-sm font-medium text-white">Phone</label><input {...a11y('phone')} type="tel" autoComplete="tel" className={input} value={values.phone} onChange={set('phone')} />{err('phone')}</div>
+        <div><label htmlFor="f-name" className="text-sm font-medium text-fg">Name</label><input {...a11y('name')} autoComplete="name" className={input} value={values.name} onChange={set('name')} />{err('name')}</div>
+        <div><label htmlFor="f-phone" className="text-sm font-medium text-fg">Phone</label><input {...a11y('phone')} type="tel" autoComplete="tel" className={input} value={values.phone} onChange={set('phone')} />{err('phone')}</div>
       </div>
-      <div><label htmlFor="f-message" className="text-sm font-medium text-white">How can we help?</label><textarea {...a11y('message')} rows={4} className={input} value={values.message} onChange={set('message')} />{err('message')}</div>
+      <div><label htmlFor="f-message" className="text-sm font-medium text-fg">How can we help?</label><textarea {...a11y('message')} rows={4} className={input} value={values.message} onChange={set('message')} />{err('message')}</div>
       <div className="grid gap-5 sm:grid-cols-2">
-        <div><label htmlFor="f-email" className="text-sm font-medium text-white">Email <span className="font-normal text-steel-dim">(optional)</span></label><input {...a11y('email')} type="email" autoComplete="email" className={input} value={values.email} onChange={set('email')} />{err('email')}</div>
+        <div><label htmlFor="f-email" className="text-sm font-medium text-fg">Email <span className="font-normal text-steel-dim">(optional)</span></label><input {...a11y('email')} type="email" autoComplete="email" className={input} value={values.email} onChange={set('email')} />{err('email')}</div>
         <div>
-          <label htmlFor="f-service" className="text-sm font-medium text-white">Service <span className="font-normal text-steel-dim">(optional)</span></label>
+          <label htmlFor="f-service" className="text-sm font-medium text-fg">Service <span className="font-normal text-steel-dim">(optional)</span></label>
           <select id="f-service" className={input} value={values.service} onChange={set('service')}>
             <option value="">Select…</option>{serviceOptions.map((o) => <option key={o}>{o}</option>)}
           </select>

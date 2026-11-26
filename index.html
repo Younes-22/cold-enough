@@ -5,6 +5,15 @@
     <link rel="icon" type="image/png" href="/logo-mark.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05090c" />
+    <script>
+      // Apply a saved light-mode choice before the page paints, to avoid a dark flash.
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.dataset.theme = 'light'
+          document.querySelector('meta[name="theme-color"]').content = '#f6f9fb'
+        }
+      } catch {}
+    </script>
     <meta name="description" content="Cold Enough – commercial refrigeration installation, repair and maintenance. Emergency response within 4 hours. F-Gas certified." />
     <title>Cold Enough | Commercial Refrigeration</title>
   </head>

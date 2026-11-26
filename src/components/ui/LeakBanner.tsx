@@ -9,10 +9,10 @@ export function LeakBanner() {
       <h2 id="leak-heading" className="mt-4 text-2xl font-bold leading-tight sm:text-3xl">Losing gas? <span className="text-ice">Tired of temporary fixes?</span></h2>
       <p className="mt-4 text-sm leading-relaxed sm:text-base">Topping up a leaking system without addressing the leak can breach F-Gas regulations. We do it properly, using advanced leak detection equipment.</p>
       <ol className="mt-5 grid grid-cols-2 gap-2">
-        {steps.map((s, i) => <li key={s} className="flex items-center gap-2 rounded-xl border border-ink-600 px-3 py-2.5 text-sm font-medium text-white"><span className="font-mono text-xs text-ice">{i + 1}</span>{s}</li>)}
+        {steps.map((s, i) => <li key={s} className="flex items-center gap-2 rounded-xl border border-ink-600 px-3 py-2.5 text-sm font-medium text-fg"><span className="font-mono text-xs text-ice">{i + 1}</span>{s}</li>)}
       </ol>
-      <p className="mt-5 font-display font-semibold text-white">No more repeat top-ups. Just a proper repair.</p>
-      <a href="#leak-video" className="mt-4 inline-flex items-center gap-2 py-1 text-sm font-semibold text-ice hover:text-white"><PlayCircle className="h-5 w-5" aria-hidden />Watch us find a leak</a>
+      <p className="mt-5 font-display font-semibold text-fg">No more repeat top-ups. Just a proper repair.</p>
+      <a href="#leak-video" className="mt-4 inline-flex items-center gap-2 py-1 text-sm font-semibold text-ice hover:text-fg"><PlayCircle className="h-5 w-5" aria-hidden />Watch us find a leak</a>
     </aside>
   )
 }

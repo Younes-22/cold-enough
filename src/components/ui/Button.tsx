@@ -16,9 +16,9 @@ type Props = {
 const base =
   'group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-display text-sm font-semibold transition-all duration-300 focus-visible:outline-offset-2'
 const variants = {
-  primary: 'bg-white text-ink hover:bg-ice-light hover:shadow-[0_0_30px_rgba(63,169,224,.45)]',
+  primary: 'bg-fg text-ink hover:bg-ice-light hover:shadow-[0_0_30px_rgba(63,169,224,.45)]',
   emergency: 'bg-flame text-white hover:bg-flame-light hover:text-ink hover:shadow-[0_0_30px_rgba(249,115,22,.5)]',
-  ghost: 'border border-ink-600 bg-white/5 text-white backdrop-blur hover:border-ice hover:bg-ice/10',
+  ghost: 'border border-ink-600 bg-fg/5 text-fg backdrop-blur hover:border-ice hover:bg-ice/10',
 }
 
 export function Button({ children, to, href, variant = 'primary', className = '', external, type = 'button', disabled, onClick }: Props) {

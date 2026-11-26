@@ -1,13 +1,17 @@
+// Values live in src/index.css, where light mode overrides them.
+const v = (name) => `rgb(var(--${name}) / <alpha-value>)`
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        ink: { DEFAULT: '#05090c', 900: '#080e13', 800: '#0b1218', 700: '#111b23', 600: '#16212a' },
-        ice: { DEFAULT: '#3fa9e0', light: '#7cc8ee', deep: '#1f6f9f' },
-        flame: { DEFAULT: '#f97316', light: '#fbbf24', deep: '#c2410c' },
-        steel: { DEFAULT: '#aab7c0', dim: '#7d8b95' },
+        fg: v('fg'),
+        ink: { DEFAULT: v('ink'), 900: v('ink-900'), 800: v('ink-800'), 700: v('ink-700'), 600: v('ink-600') },
+        ice: { DEFAULT: v('ice'), light: v('ice-light'), deep: v('ice-deep') },
+        flame: { DEFAULT: '#f97316', light: v('flame-light'), deep: '#c2410c' },
+        steel: { DEFAULT: v('steel'), dim: v('steel-dim') },
       },
       fontFamily: {
         display: ['"Sora Variable"', 'Sora', 'ui-sans-serif', 'system-ui', 'sans-serif'],

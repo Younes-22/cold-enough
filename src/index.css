@@ -3,11 +3,28 @@
 @tailwind utilities;
 
 @layer base {
-  html { scroll-behavior: smooth; background: #05090c; }
+  /* Theme colours as RGB channels, so Tailwind opacity modifiers keep working. */
+  :root {
+    color-scheme: dark;
+    --fg: 255 255 255;
+    --ink: 5 9 12; --ink-900: 8 14 19; --ink-800: 11 18 24; --ink-700: 17 27 35; --ink-600: 22 33 42;
+    --ice: 63 169 224; --ice-light: 124 200 238; --ice-deep: 31 111 159;
+    --flame-light: 251 191 36;
+    --steel: 170 183 192; --steel-dim: 125 139 149;
+  }
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --fg: 11 23 32;
+    --ink: 246 249 251; --ink-900: 236 242 246; --ink-800: 255 255 255; --ink-700: 228 241 249; --ink-600: 210 222 231;
+    --ice: 13 108 158; --ice-light: 9 85 126; --ice-deep: 8 70 104;
+    --flame-light: 180 83 9;
+    --steel: 66 84 96; --steel-dim: 90 108 120;
+  }
+  html { scroll-behavior: smooth; background: rgb(var(--ink)); }
   body { @apply bg-ink font-body text-steel antialiased; }
-  h1, h2, h3, h4 { @apply font-display text-white tracking-tight; }
+  h1, h2, h3, h4 { @apply font-display text-fg tracking-tight; }
   :focus-visible { @apply outline-2 outline-offset-2 outline-ice; outline-style: solid; }
-  ::selection { background: rgba(63,169,224,.35); color: #fff; }
+  ::selection { background: rgba(63,169,224,.35); color: rgb(var(--fg)); }
 }
 
 @layer components {
@@ -15,8 +32,8 @@
   .eyebrow { @apply font-mono text-xs font-medium uppercase tracking-[0.2em] text-ice; }
   .grid-bg {
     background-image:
-      linear-gradient(rgba(63,169,224,.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(63,169,224,.06) 1px, transparent 1px);
+      linear-gradient(rgb(var(--ice) / .06) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--ice) / .06) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
   }

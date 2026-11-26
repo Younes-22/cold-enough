@@ -14,7 +14,7 @@ export function ServiceCard({ to, icon: Icon, title, text, tags, index }: { to: 
         <ul className="mt-5 flex flex-wrap gap-2">
           {tags.map((t) => <li key={t} className="rounded-full border border-ink-600 px-3 py-1 font-mono text-[11px] uppercase tracking-wide text-steel-dim">{t}</li>)}
         </ul>
-        <span className="mt-6 inline-flex items-center gap-1 font-display text-sm font-semibold text-white">Learn more <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
+        <span className="mt-6 inline-flex items-center gap-1 font-display text-sm font-semibold text-fg">Learn more <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
       </Link>
     </Reveal>
   )

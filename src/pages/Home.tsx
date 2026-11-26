@@ -42,7 +42,7 @@ export default function Home() {
               <Button variant="ghost" href={whatsappUrl} external className="!px-4 !py-4 !text-base sm:!px-8"><MessageCircle className="h-5 w-5" /> WhatsApp</Button>
             </div>
             {/* Phones and tablets: the full card sits further down, so surface its headline on first view. */}
-            <a href="#leak-repair" className="mt-5 flex items-center gap-3 rounded-2xl border border-ice/50 bg-ice/10 px-4 py-3 font-display text-sm font-semibold text-white sm:w-fit lg:hidden">
+            <a href="#leak-repair" className="mt-5 flex items-center gap-3 rounded-2xl border border-ice/50 bg-ice/10 px-4 py-3 font-display text-sm font-semibold text-fg sm:w-fit lg:hidden">
               <SearchCheck className="h-5 w-5 shrink-0 text-ice" aria-hidden />Losing gas? Tired of temporary fixes?<ArrowDown className="ml-auto h-4 w-4 shrink-0 text-ice" aria-hidden />
             </a>
             <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-mono text-xs uppercase tracking-wider text-steel">
@@ -51,7 +51,7 @@ export default function Home() {
           </div>
           <LeakBanner />
         </div>
-        <a href="#leak-video" aria-label="Scroll to leak detection videos" className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-steel-dim transition-colors hover:text-white lg:block"><ArrowDown className="h-6 w-6 animate-bounce" /></a>
+        <a href="#leak-video" aria-label="Scroll to leak detection videos" className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-steel-dim transition-colors hover:text-fg lg:block"><ArrowDown className="h-6 w-6 animate-bounce" /></a>
       </section>
 
       {/* Leak detection video */}
@@ -90,7 +90,7 @@ export default function Home() {
                   <h3 className="mt-2 text-xl font-semibold">Refrigeration pipework installation</h3>
                   <p className="mt-2 text-sm leading-relaxed">Installing and fixing copper pipework, including runs around a cold room.</p>
                 </div>
-                <span className="inline-flex shrink-0 items-center gap-1 font-display text-sm font-semibold text-white">See our projects <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden /></span>
+                <span className="inline-flex shrink-0 items-center gap-1 font-display text-sm font-semibold text-fg">See our projects <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden /></span>
               </div>
             </Link>
           </Reveal>

@@ -1,14 +1,17 @@
 import { site } from '../config/site'
 import { bubbleLeakVideo, leakDetectorVideo, type Media } from './media'
-import { Boxes, Snowflake, Thermometer, Wrench, type LucideIcon } from 'lucide-react'
+import {
+  Boxes, CakeSlice, CalendarCheck, ChefHat, ClipboardCheck, Droplets, Ham, Handshake, Milk, PhoneCall, Refrigerator, ScanSearch, ShieldCheck,
+  ShoppingCart, Snowflake, Store, Thermometer, ThermometerSnowflake, TriangleAlert, Wrench, type LucideIcon,
+} from 'lucide-react'
 
 export type ServicePageData = {
   slug: string; icon: LucideIcon; title: string; seoDescription: string; eyebrow: string; heroTitle: string; intro: string
   cardText: string; tags: string[]
   featuresTitle: string
-  features: { title: string; text: string }[]
+  features: { icon: LucideIcon; title: string; text: string }[]
   /** Full-width feature card with photos, shown below the other features. */
-  showcase?: { title: string; text: string; photos: { src: string; alt: string; width: number; height: number }[] }
+  showcase?: { icon: LucideIcon; title: string; text: string; photos: { src: string; alt: string; width: number; height: number }[] }
   emergency?: { title: string; text: string }
   steps?: { title: string; text: string }[]
   faqs: { q: string; a: string }[]
@@ -26,20 +29,29 @@ const eResp = 'Emergency response within 4 hours. This is our response commitmen
 export const servicePages: ServicePageData[] = [
   {
     slug: 'commercial-refrigeration', icon: Boxes, title: 'Commercial Refrigeration',
-    seoDescription: 'Commercial refrigeration installation for retail and hospitality: display cabinets, multidecks, serve-over counters, fridges and freezers.',
+    seoDescription: 'Commercial refrigeration installation for retail and hospitality: display cabinets, multidecks, serve-over counters, fridges, freezers and supermarket pack systems.',
     eyebrow: 'Commercial Refrigeration', heroTitle: 'Commercial refrigeration for retail and hospitality.',
     intro: 'Installation of refrigeration equipment for shops, restaurants, cafés and commercial kitchens. F-Gas certified.',
     cardText: 'Display cabinets, multidecks, serve-over counters and commercial fridges and freezers.', tags: ['Display cabinets', 'Multidecks', 'Serve-over'],
     featuresTitle: 'What we install',
     features: [
-      { title: 'Display cabinets', text: 'Refrigerated display for showing product while keeping it at temperature.' },
-      { title: 'Multideck refrigeration', text: 'Open-front multideck units for retail chilled aisles.' },
-      { title: 'Serve-over counters', text: 'Counter refrigeration for delis, bakeries, butchers and food service.' },
-      { title: 'Commercial fridges & freezers', text: 'Upright and under-counter units for kitchens and back-of-house.' },
-      { title: 'Retail systems', text: 'Refrigeration systems designed around how your shop trades.' },
-      { title: 'Hospitality systems', text: 'Refrigeration for restaurants, bars, cafés and catering operations.' },
-      { title: 'Supermarket refrigeration', text: 'Multi-compressor and pack systems, including CO2.' },
+      { icon: CakeSlice, title: 'Display cabinets', text: 'Refrigerated display for showing product while keeping it at temperature.' },
+      { icon: Milk, title: 'Multideck refrigeration', text: 'Open-front multideck units for retail chilled aisles.' },
+      { icon: Ham, title: 'Serve-over counters', text: 'Counter refrigeration for delis, bakeries, butchers and food service.' },
+      { icon: Refrigerator, title: 'Commercial fridges & freezers', text: 'Upright and under-counter units for kitchens and back-of-house.' },
+      { icon: Store, title: 'Retail systems', text: 'Refrigeration systems designed around how your shop trades.' },
+      { icon: ChefHat, title: 'Hospitality systems', text: 'Refrigeration for restaurants, bars, cafés and catering operations.' },
     ],
+    showcase: {
+      icon: ShoppingCart,
+      title: 'Supermarket refrigeration',
+      text: 'Multi-compressor and pack systems, including CO2.',
+      photos: [
+        { src: '/images/supermarket-pack-system.jpg', alt: 'Refrigeration pack with five compressors, variable speed drives and a receiver vessel', width: 1600, height: 1200 },
+        { src: '/images/supermarket-co2-charging.jpg', alt: 'Carbon dioxide cylinder connected by hose to a refrigeration pack', width: 1200, height: 1600 },
+        { src: '/images/supermarket-control-panel.jpg', alt: 'Compressor control panel with run and fault indicator lights', width: 1600, height: 1200 },
+      ],
+    },
     emergency: { title: 'Equipment down mid-service?', text: eResp },
     faqs: [
       { q: 'Do you work with both retail and hospitality?', a: 'Yes. We install commercial refrigeration for retail and hospitality premises.' },
@@ -54,20 +66,11 @@ export const servicePages: ServicePageData[] = [
     cardText: 'Cold room and freezer room installation, repairs and maintenance.', tags: ['Cold rooms', 'Freezer rooms'],
     featuresTitle: 'Cold room services',
     features: [
-      { title: 'Cold room installation', text: 'Chilled storage rooms installed for your premises and product.' },
-      { title: 'Freezer room installation', text: 'Walk-in freezer rooms for frozen storage.' },
-      { title: 'Repairs', text: 'Fault finding and repair on existing cold and freezer rooms.' },
-      { title: 'Maintenance', text: 'Planned servicing to keep rooms running reliably.' },
+      { icon: ThermometerSnowflake, title: 'Cold room installation', text: 'Chilled storage rooms installed for your premises and product.' },
+      { icon: Snowflake, title: 'Freezer room installation', text: 'Walk-in freezer rooms for frozen storage.' },
+      { icon: Wrench, title: 'Repairs', text: 'Fault finding and repair on existing cold and freezer rooms.' },
+      { icon: CalendarCheck, title: 'Maintenance', text: 'Planned servicing to keep rooms running reliably.' },
     ],
-    showcase: {
-      title: 'Supermarket refrigeration',
-      text: 'Multi-compressor and pack systems, including CO2.',
-      photos: [
-        { src: '/images/supermarket-pack-system.jpg', alt: 'Refrigeration pack with five compressors, variable speed drives and a receiver vessel', width: 1600, height: 1200 },
-        { src: '/images/supermarket-co2-charging.jpg', alt: 'Carbon dioxide cylinder connected by hose to a refrigeration pack', width: 1200, height: 1600 },
-        { src: '/images/supermarket-control-panel.jpg', alt: 'Compressor control panel with run and fault indicator lights', width: 1600, height: 1200 },
-      ],
-    },
     emergency: { title: 'Cold room not holding temperature?', text: eResp },
     steps: [
       { title: 'Enquiry', text: 'Tell us what you need to store and where.' },
@@ -89,11 +92,10 @@ export const servicePages: ServicePageData[] = [
     cardText: 'Breakdowns, fault diagnosis, temperature control and refrigerant system faults.', tags: ['Breakdowns', 'Fault diagnosis', 'Emergency'],
     featuresTitle: 'Faults we repair',
     features: [
-      { title: 'Refrigeration breakdowns', text: 'Equipment that has stopped cooling or stopped running.' },
-      { title: 'Fault diagnosis', text: 'Finding the root cause rather than guessing.' },
-      { title: 'Temperature control issues', text: 'Units that will not hold, reach or regulate temperature.' },
-      { title: 'Refrigerant system faults', text: 'Faults in the refrigerant circuit, handled by F-Gas certified engineers.' },
-      { title: 'Commercial repairs', text: 'Repairs across commercial refrigeration equipment.' },
+      { icon: TriangleAlert, title: 'Refrigeration breakdowns', text: 'Equipment that has stopped cooling or stopped running.' },
+      { icon: ScanSearch, title: 'Fault diagnosis', text: 'Finding the root cause rather than guessing.' },
+      { icon: Thermometer, title: 'Temperature control issues', text: 'Units that will not hold, reach or regulate temperature.' },
+      { icon: Droplets, title: 'Refrigerant system faults', text: 'Faults in the refrigerant circuit, handled by F-Gas certified engineers.' },
     ],
     emergency: { title: 'Emergency response within 4 hours', text: 'Call us as soon as you spot a problem. ' + eResp },
     steps: [
@@ -135,11 +137,10 @@ export const servicePages: ServicePageData[] = [
     cardText: 'Preventative maintenance, routine servicing, inspections and maintenance contracts.', tags: ['Preventative', 'Inspections', 'Contracts'],
     featuresTitle: 'Maintenance services',
     features: [
-      { title: 'Preventative maintenance', text: 'Regular attention to reduce the chance of unexpected failure.' },
-      { title: 'Routine servicing', text: 'Scheduled servicing of your refrigeration equipment.' },
-      { title: 'Refrigeration inspections', text: 'Inspection of systems and equipment condition.' },
-      { title: 'Breakdown support', text: 'Help when something does go wrong, with emergency response within 4 hours.' },
-      { title: 'Maintenance contracts', text: 'Ongoing cover arranged around your equipment. Contact us to discuss terms.' },
+      { icon: ShieldCheck, title: 'Preventative maintenance', text: 'Regular scheduled servicing to reduce the chance of unexpected failure.' },
+      { icon: ClipboardCheck, title: 'Refrigeration inspections', text: 'Inspection of systems and equipment condition.' },
+      { icon: PhoneCall, title: 'Breakdown support', text: 'Help when something does go wrong, with emergency response within 4 hours.' },
+      { icon: Handshake, title: 'Maintenance contracts', text: 'Ongoing cover arranged around your equipment. Contact us to discuss terms.' },
     ],
     emergency: { title: 'Already have a breakdown?', text: eResp },
     faqs: [

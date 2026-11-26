@@ -25,14 +25,14 @@ export default function Contact() {
               <Reveal key={label} delay={(i + 1) * 80}>
                 <a href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="card group flex items-center gap-3 p-4 sm:gap-4 sm:p-5 transition-all duration-300 hover:border-ice/60 hover:shadow-[0_0_40px_rgba(63,169,224,.15)]">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ice/10 text-ice transition-colors group-hover:bg-ice group-hover:text-ink"><Icon className="h-5 w-5" /></span>
-                  <span><span className="block font-mono text-[11px] uppercase tracking-wider text-steel-dim">{label}</span><span className="font-display text-sm font-semibold text-white [overflow-wrap:anywhere] min-[400px]:text-[15px] sm:text-base">{value}</span></span>
+                  <span><span className="block font-mono text-[11px] uppercase tracking-wider text-steel-dim">{label}</span><span className="font-display text-sm font-semibold text-fg [overflow-wrap:anywhere] min-[400px]:text-[15px] sm:text-base">{value}</span></span>
                 </a>
               </Reveal>
             ))}
             <Reveal delay={400}>
               <div className="card space-y-4 p-5 text-sm">
-                <p className="flex items-start gap-3"><Clock className="mt-0.5 h-5 w-5 shrink-0 text-ice" aria-hidden /><span><span className="block font-display font-semibold text-white">{site.hours}</span>{site.hoursNote}</span></p>
-                <p className="flex items-start gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-ice" aria-hidden /><span><span className="block font-display font-semibold text-white">We operate in {site.serviceArea}</span>Not sure if we cover your address? Get in touch to check.</span></p>
+                <p className="flex items-start gap-3"><Clock className="mt-0.5 h-5 w-5 shrink-0 text-ice" aria-hidden /><span><span className="block font-display font-semibold text-fg">{site.hours}</span>{site.hoursNote}</span></p>
+                <p className="flex items-start gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-ice" aria-hidden /><span><span className="block font-display font-semibold text-fg">We operate in {site.serviceArea}</span>Not sure if we cover your address? Get in touch to check.</span></p>
               </div>
             </Reveal>
           </div>

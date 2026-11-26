@@ -12,7 +12,7 @@ export function ImageSlot({ src, alt, label, className = '' }: { src?: string; a
       <div className="relative flex flex-col items-center gap-3 px-6 text-center">
         <Snowflake className="h-10 w-10 text-ice/70 animate-floaty" aria-hidden />
         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-steel-dim">Photo placeholder</p>
-        <p className="font-display text-sm text-white/80">{label}</p>
+        <p className="font-display text-sm text-fg/80">{label}</p>
       </div>
     </div>
   )
