@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; background: #05090c; }
+  body { @apply bg-ink font-body text-steel antialiased; }
+  h1, h2, h3, h4 { @apply font-display text-white tracking-tight; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-ice; outline-style: solid; }
+  ::selection { background: rgba(63,169,224,.35); color: #fff; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
+  .eyebrow { @apply font-mono text-xs font-medium uppercase tracking-[0.2em] text-ice; }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(63,169,224,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(63,169,224,.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  }
+  .card { @apply rounded-xl2 border border-ink-600 bg-ink-800; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
+}
