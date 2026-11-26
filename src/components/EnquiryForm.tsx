@@ -3,19 +3,18 @@ import { AlertTriangle, CheckCircle2, Send } from 'lucide-react'
 import { Button } from './ui/Button'
 import { formEndpoint, mailtoUrl, site } from '../config/site'
 
-type Values = { name: string; phone: string; email: string; service: string; urgency: string; message: string }
+type Values = { name: string; phone: string; email: string; service: string; message: string }
 type Errors = Partial<Record<keyof Values, string>>
 
-const empty: Values = { name: '', phone: '', email: '', service: '', urgency: 'standard', message: '' }
+const empty: Values = { name: '', phone: '', email: '', service: '', message: '' }
 const serviceOptions = ['Commercial refrigeration', 'Cold room / freezer room', 'Refrigeration repair', 'Service & maintenance', 'Other refrigeration enquiry']
 
 function validate(v: Values): Errors {
   const e: Errors = {}
   if (v.name.trim().length < 2) e.name = 'Please enter your name.'
   if (!/^[+\d][\d\s()-]{8,}$/.test(v.phone.trim())) e.phone = 'Please enter a valid phone number.'
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) e.email = 'Please enter a valid email address.'
-  if (!v.service) e.service = 'Please choose a service.'
-  if (v.message.trim().length < 10) e.message = 'Please tell us a little more (at least 10 characters).'
+  if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) e.email = 'Please enter a valid email address.'
+  if (!v.message.trim()) e.message = 'Please tell us briefly how we can help.'
   return e
 }
 
@@ -32,12 +31,12 @@ async function submitEnquiry(v: Values): Promise<boolean> {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
-        _subject: `Website enquiry – ${v.service}${v.urgency === 'emergency' ? ' (EMERGENCY)' : ''}`,
+        _subject: `Website enquiry – ${v.service || v.name.trim()}`,
         name: v.name.trim(),
         phone: v.phone.trim(),
-        email: v.email.trim(),
-        service: v.service,
-        urgency: v.urgency === 'emergency' ? 'Emergency / breakdown' : 'Standard enquiry',
+        // Optional fields are left out when empty.
+        email: v.email.trim() || undefined,
+        service: v.service || undefined,
         message: v.message.trim(),
       }),
       signal: ctrl.signal,
@@ -61,8 +60,8 @@ export function EnquiryForm() {
   const set = (k: keyof Values) => (e: { target: { value: string } }) => setValues((s) => ({ ...s, [k]: e.target.value }))
 
   const mailto = () => {
-    const body = `Name: ${values.name}\nPhone: ${values.phone}\nEmail: ${values.email}\nService: ${values.service}\nUrgency: ${values.urgency === 'emergency' ? 'Emergency / breakdown' : 'Standard'}\n\n${values.message}`
-    return `${mailtoUrl}?subject=${encodeURIComponent('Website enquiry – ' + values.service)}&body=${encodeURIComponent(body)}`
+    const body = `Name: ${values.name}\nPhone: ${values.phone}\nEmail: ${values.email}\nService: ${values.service}\n\n${values.message}`
+    return `${mailtoUrl}?subject=${encodeURIComponent('Website enquiry – ' + (values.service || values.name))}&body=${encodeURIComponent(body)}`
   }
 
   async function onSubmit(ev: FormEvent) {
@@ -109,27 +108,21 @@ export function EnquiryForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="card relative space-y-5 overflow-hidden p-6 sm:p-8" aria-label="Enquiry form">
+      <p className="text-sm">Breakdown? Calling is fastest: <a className="font-semibold text-white underline" href={site.phoneHref}>{site.phoneDisplay}</a></p>
       <div className="grid gap-5 sm:grid-cols-2">
         <div><label htmlFor="f-name" className="text-sm font-medium text-white">Name</label><input {...a11y('name')} autoComplete="name" className={input} value={values.name} onChange={set('name')} />{err('name')}</div>
         <div><label htmlFor="f-phone" className="text-sm font-medium text-white">Phone</label><input {...a11y('phone')} type="tel" autoComplete="tel" className={input} value={values.phone} onChange={set('phone')} />{err('phone')}</div>
       </div>
-      <div><label htmlFor="f-email" className="text-sm font-medium text-white">Email</label><input {...a11y('email')} type="email" autoComplete="email" className={input} value={values.email} onChange={set('email')} />{err('email')}</div>
+      <div><label htmlFor="f-message" className="text-sm font-medium text-white">How can we help?</label><textarea {...a11y('message')} rows={4} className={input} value={values.message} onChange={set('message')} />{err('message')}</div>
       <div className="grid gap-5 sm:grid-cols-2">
+        <div><label htmlFor="f-email" className="text-sm font-medium text-white">Email <span className="font-normal text-steel-dim">(optional)</span></label><input {...a11y('email')} type="email" autoComplete="email" className={input} value={values.email} onChange={set('email')} />{err('email')}</div>
         <div>
-          <label htmlFor="f-service" className="text-sm font-medium text-white">Service</label>
-          <select {...a11y('service')} className={input} value={values.service} onChange={set('service')}>
+          <label htmlFor="f-service" className="text-sm font-medium text-white">Service <span className="font-normal text-steel-dim">(optional)</span></label>
+          <select id="f-service" className={input} value={values.service} onChange={set('service')}>
             <option value="">Select…</option>{serviceOptions.map((o) => <option key={o}>{o}</option>)}
-          </select>{err('service')}
-        </div>
-        <div>
-          <label htmlFor="f-urgency" className="text-sm font-medium text-white">Urgency</label>
-          <select id="f-urgency" className={input} value={values.urgency} onChange={set('urgency')}>
-            <option value="standard">Standard enquiry</option><option value="emergency">Emergency / breakdown</option>
           </select>
         </div>
       </div>
-      {values.urgency === 'emergency' && <p className="rounded-xl border border-flame/40 bg-flame/10 p-4 text-sm text-flame-light">Breakdown? Calling is fastest: <a className="font-semibold underline" href={site.phoneHref}>{site.phoneDisplay}</a> or <a className="font-semibold underline" href={site.mobileHref}>{site.mobileDisplay}</a>. We aim to respond to emergencies within 4 hours.</p>}
-      <div><label htmlFor="f-message" className="text-sm font-medium text-white">How can we help?</label><textarea {...a11y('message')} rows={5} className={input} value={values.message} onChange={set('message')} />{err('message')}</div>
       {/* Honeypot – hidden from people and assistive tech */}
       <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden"><label htmlFor="f-website">Website</label><input id="f-website" name="website" tabIndex={-1} autoComplete="off" /></div>
       {status === 'failed' && (
