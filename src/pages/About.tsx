@@ -20,7 +20,6 @@ export default function About() {
               <div className="mt-6 space-y-4 leading-relaxed">
                 <p>Cold Enough installs, repairs and maintains commercial refrigeration for businesses that depend on keeping product cold.</p>
                 <p>We focus on refrigeration alone. That focus, together with F-Gas certification and City & Guilds qualification, is what we bring to every job.</p>
-                <p className="text-steel-dim">[Placeholder: company story, team and background to be supplied.]</p>
               </div>
             </Reveal>
           </div>

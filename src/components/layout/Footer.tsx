@@ -46,8 +46,8 @@ export function Footer() {
       </div>
       <div className="border-t border-ink-600 pb-28 pt-6 lg:pb-6">
         <div className="container-x flex flex-wrap items-center justify-between gap-3 text-xs text-steel-dim">
-          <p>© {new Date().getFullYear()} {site.name}. {site.domain}</p>
-          <p className="flex flex-wrap gap-x-5 gap-y-1"><Link className="py-1.5 hover:text-white" to="/privacy">Privacy policy</Link><span>Registered company details: [placeholder – to be supplied]</span></p>
+          <p>© {new Date().getFullYear()} {site.name}. All rights reserved. {site.domain}</p>
+          <p className="flex flex-wrap gap-x-5 gap-y-1"><Link className="py-1.5 hover:text-white" to="/privacy">Privacy policy</Link><span className="py-1.5">Registered 2026</span></p>
         </div>
       </div>
     </footer>
